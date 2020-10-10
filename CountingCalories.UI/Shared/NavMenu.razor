@@ -1,14 +1,11 @@
-﻿<div class="top-row pl-5 navbar bg-info">
+﻿<div class="top-row pl-5 navbar">
     <a class="navbar-brand" href="">Menu</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu" style="background-image: url('resources/sunnyclouds.JPG');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;">
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="caloriesperday">

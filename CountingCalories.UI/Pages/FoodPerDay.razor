@@ -3,23 +3,23 @@
 
 @inherits FoodPerDayBase
 
+<div class="container-fluid">
+
 <h3>Counting Calories at @CurrentDate</h3>
 <p id="calendar"></p>
 
 <EditForm Model="@FoodEntry">
-    <div class="container-fluid">
-        <div class="row">
-            <p><label>Choose:</label></p><br>
+    <div class="row">
+            <p><label>Choose:</label></p>
+            <p>
+                <InputSelect id="name" @bind-Value="@Name">
+                    @foreach (var food in AllFoodItems)
+                    {
+                        <option value="@food.Name">@food.Name</option>
+                    }
+                </InputSelect>
+            </p>
         </div>
-        <p>
-            <InputSelect id="name" @bind-Value="@Name">
-                @foreach (var food in AllFoodItems)
-                {
-                    <option value="@food.Name">@food.Name</option>
-                }
-            </InputSelect>
-        </p>
-
         <div class="row">
             
             <label>
@@ -53,6 +53,6 @@
         <div style="padding-bottom: 50px;" class="row">
             You ate @SumUpCaloriesOfToday() calories so far :)
         </div>
-        </div>
 </EditForm>
+</div>
 
