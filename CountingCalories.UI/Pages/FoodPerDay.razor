@@ -1,4 +1,5 @@
-﻿@page "/caloriesperday"
+﻿@page "/"
+@page "/caloriesperday"
 
 @inherits FoodPerDayBase
 
@@ -6,10 +7,10 @@
 <p id="calendar"></p>
 
 <EditForm Model="@FoodEntry">
-
-    <div class="row">
-        <p><label>Choose:</label></p><br>
-
+    <div class="container-fluid">
+        <div class="row">
+            <p><label>Choose:</label></p><br>
+        </div>
         <p>
             <InputSelect id="name" @bind-Value="@Name">
                 @foreach (var food in AllFoodItems)
@@ -18,35 +19,40 @@
                 }
             </InputSelect>
         </p>
-        <br>
-        <p>
+
+        <div class="row">
+            
             <label>
                 Amount in g
                 <InputNumber id="amount" @bind-Value="FoodEntry.Amount" />
             </label>
-        </p>
-        <br>
-        <p><a class="btn btn-primary" @onclick="AddFoodEntry">Add entry</a></p>
-        <br>
-    </div>
-
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Calories</th>
-        </tr>
-        @if (FoodToday.AllFoodEntries.Any())
-        {
-            foreach (var foodEntry in FoodToday.AllFoodEntries)
-            {
+            
+            <a class="btn btn-primary" @onclick="AddFoodEntry">Add</a>
+        </div>
+        <hr/>
+        <div class="row">
+            <table>
                 <tr>
-                    <td><InputText id="foodname" @bind-Value="@foodEntry.FoodName" /></td>
-                    <td><InputNumber id="calories" @bind-Value="@foodEntry.Calories" /></td>
-                    <td><a class="btn btn-primary" @onclick="() => DeleteEntry(foodEntry)">Delete</a></td>
+                    <th>Name</th>
+                    <th>Calories</th>
                 </tr>
-             }
-         }
-        </table>
-    <p>You ate @SumUpCaloriesOfToday() calories so far :)</p>
+                @if (FoodToday.AllFoodEntries.Any())
+                {
+                    foreach (var foodEntry in FoodToday.AllFoodEntries)
+                    {
+                        <tr>
+                            <td><InputText id="foodname" @bind-Value="@foodEntry.FoodName" /></td>
+                            <td><InputNumber id="calories" @bind-Value="@foodEntry.Calories" /></td>
+                            <td><a class="btn btn-primary" @onclick="() => DeleteEntry(foodEntry)">Delete</a></td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+        <hr>
+        <div style="padding-bottom: 50px;" class="row">
+            You ate @SumUpCaloriesOfToday() calories so far :)
+        </div>
+        </div>
 </EditForm>
 
