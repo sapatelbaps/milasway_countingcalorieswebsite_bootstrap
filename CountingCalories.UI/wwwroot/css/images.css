@@ -1,0 +1,14 @@
+
+.bgimage-nav {
+    background-image: url('../resources/IMG_1173.JPG');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+}
+
+.bgimage-main {
+    background-image: url('../resources/sunnyclouds.JPG');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
