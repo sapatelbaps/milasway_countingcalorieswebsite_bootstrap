@@ -1,0 +1,11 @@
+
+.loading-panel-wrapper {
+
+    width: 50%;
+    height: 0%;
+    position: absolute;
+    z-index: 123456;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

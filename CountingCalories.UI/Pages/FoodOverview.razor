@@ -2,29 +2,40 @@
 
 @inherits FoodOverviewBase
 
-<h3>Food overview</h3>
+    <div class="container-fluid">
+
+        <h3>Food overview</h3>
 
 
-<EditForm Model="@allFood">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Calories per 100g</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var food in allFood)
-            {
-                <tr>
-                    <td><InputText id="name" @bind-Value="food.Name" /></td>
-                    <td><InputNumber id="caloriesper100g" @bind-Value="food.CaloriesPer100G" /></td>
-                    <td><a class="btn btn" @onclick="() => DeleteFood(food)">Delete</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <a class="btn btn-primary" @onclick="SaveChanges">Save</a>
-</EditForm>
+        @if (IsLoadingData)
+        {
+            <div class="loading-panel-wrapper">
+                <div class="spinner-border text-warning"></div>
+            </div>
+        }
+
+        <EditForm Model="@allFood">
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Calories per 100g</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var food in allFood)
+                    {
+                        <tr>
+                            <td><InputText id="name" @bind-Value="food.Name" /></td>
+                            <td><InputNumber id="caloriesper100g" @bind-Value="food.CaloriesPer100G" /></td>
+                            <td><a class="btn btn" @onclick="() => DeleteFood(food)">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a class="btn btn-primary" @onclick="SaveChanges">Save</a>
+        </EditForm>
+    </div>
 

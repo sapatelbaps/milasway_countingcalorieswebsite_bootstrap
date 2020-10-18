@@ -4,11 +4,14 @@ using System.Threading.Tasks;
 using System;
 using CountingCalories.Shared.ViewModels;
 using CountingCalories.UI.Services;
+using System.Linq;
 
 namespace CountingCalories.UI.Pages
 {
     public class FoodOverviewBase : ComponentBase
     {
+        protected bool IsLoadingData;
+
         [Inject]
         public FoodService FoodService { get; set; }
 
@@ -16,9 +19,12 @@ namespace CountingCalories.UI.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            ShowSpinner();
             allFood = await FoodService.GetAllFood();
+            HideSpinner();
             await base.OnInitializedAsync();
         }
+
         public void SaveChanges()
         {
             FoodService.Update(allFood);
@@ -37,6 +43,21 @@ namespace CountingCalories.UI.Pages
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void ShowSpinner()
+        {
+            IsLoadingData = true;
+            StateHasChanged();
+        }
+
+        private void HideSpinner()
+        {
+            if (allFood.Any())
+            {
+                IsLoadingData = false;
+                StateHasChanged();
             }
         }
     }
